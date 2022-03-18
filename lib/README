@@ -1,0 +1,97 @@
+#include <Arduino.h>
+#include <Bounce2.h>
+
+Bounce releu1 = Bounce();
+Bounce releu2 = Bounce();
+
+#define PIN_BTN_JOS 9
+#define PIN_BTN_SUS 8
+#define SENZOR_JOS A1
+#define SENZOR_SUS A2
+#define PIN_M_MARE 4
+#define PIN_M_MIC 5
+void setup()
+{
+  Serial.begin(9600);
+  Serial.println("START");
+
+  pinMode(PIN_M_MARE, OUTPUT);
+  pinMode(PIN_M_MIC, OUTPUT);
+  digitalWrite(PIN_M_MARE, LOW);
+  digitalWrite(PIN_M_MIC, LOW);
+
+  releu1.interval(25);
+  releu1.attach(PIN_BTN_JOS, INPUT);
+  releu2.interval(25);
+  releu2.attach(PIN_BTN_SUS, INPUT);
+  digitalWrite(PIN_M_MARE, HIGH);
+  delay(200);
+  digitalWrite(PIN_M_MARE, LOW);
+
+  delay(100);
+  digitalWrite(PIN_M_MARE, HIGH);
+  delay(200);
+  digitalWrite(PIN_M_MARE, LOW);
+
+  delay(100);
+  digitalWrite(PIN_M_MARE, HIGH);
+  delay(200);
+  digitalWrite(PIN_M_MARE, LOW);
+
+  delay(100);
+  digitalWrite(PIN_M_MARE, HIGH);
+  delay(200);
+  digitalWrite(PIN_M_MARE, LOW);
+
+  delay(100);
+  digitalWrite(PIN_M_MARE, HIGH);
+  delay(200);
+  digitalWrite(PIN_M_MARE, LOW);
+    digitalWrite(PIN_M_MARE, HIGH);
+  delay(200);
+  digitalWrite(PIN_M_MARE, LOW);
+
+  delay(100);
+  digitalWrite(PIN_M_MARE, HIGH);
+  delay(200);
+  digitalWrite(PIN_M_MARE, LOW);
+
+  delay(100);
+  digitalWrite(PIN_M_MARE, HIGH);
+  delay(200);
+  digitalWrite(PIN_M_MARE, LOW);
+
+  delay(100);
+  digitalWrite(PIN_M_MARE, HIGH);
+  delay(200);
+  digitalWrite(PIN_M_MARE, LOW);
+
+  delay(100);
+  digitalWrite(PIN_M_MARE, HIGH);
+  delay(200);
+  digitalWrite(PIN_M_MARE, LOW);
+}
+
+void loop()
+{
+  releu1.update();
+  releu2.update();
+  if (releu1.read())
+  {
+    Serial.println("1ON");
+    digitalWrite(PIN_M_MARE, HIGH);
+  }
+  else
+  {
+    digitalWrite(PIN_M_MARE, LOW);
+  }
+  if (releu2.read())
+  {
+    Serial.println("2ON");
+    digitalWrite(PIN_M_MIC, HIGH);
+  }
+  else
+  {
+    digitalWrite(PIN_M_MIC, LOW);
+  }
+}
